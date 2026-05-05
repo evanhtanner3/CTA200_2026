@@ -1,0 +1,49 @@
+    1  clear
+    2  mkdir assignment_1
+    3  cd assignment_1/
+    4  touch README.md
+    5  vi 
+    6  vi README.md 
+    7  nano README.md 
+    8  clear
+    9  cd ./..
+   10  ls
+   11  pwd
+   12  touch Hello_world.c
+   13  touch Hello_world.py
+   14  mv Hello_world.c assignment_1/
+   15  mv Hello_world.py assignment_1/
+   16  cd assignment_1/
+   17  ls
+   18  rm Hello_world.c
+   19  rm Hello_world.py
+   20  cd ./..
+   21  touch Hello_world.c
+   22  touch Hello_world.py
+   23  cp Hello_world.c assignment_1/
+   24  cp Hello_world.py assignment_1/
+   25  cd assignment_1/
+   26  ls
+   27  mv Hello_world.c Hello_world_Tanner.c
+   28  mv Hello_world.py Hello_world_Tanner.py
+   29  ls
+   30  nano Hello_world_Tanner.c
+   31  nano Hello_world_Tanner.py
+   32  module load gcc
+   33  gcc Hello_world_Tanner.c -o Hello_world.x
+   34  ./Hello_world.x 
+   35  python3 Hello_world.py 
+   36  python3 Hello_world_Tanner.py 
+   37  vi Hello_world_Tanner.c
+   38  vi Hello_world_Tanner.py
+   39  gcc Hello_world_Tanner.x\
+   40  gcc Hello_world_Tanner.x
+   41  gcc Hello_world_Tanner.c
+   42  ls
+   43  rm a.out
+   44  gcc Hello_world_Tanner.c -o Hello_world_Tanner.x
+   45  python3 Hello_world_Tanner.py
+   46  ./Hello_world_Tanner.x 
+   47  ./Hello_world_Tanner.x > output_c.txt
+   48  python3 Hello_world_Tanner.py > output_python.txt
+   49  history > history.txt
