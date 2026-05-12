@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx} 
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage{mathtools}
+\usepackage{centernot}
+\usepackage{gensymb}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\section*{Question 1:}
+Throughout the first question, we have been tasked with modeling the Mandelbrot Set which is given by the recursive equation:
+\[c = x+iy, \quad z_{i+1} = z_i^2 +c\]
+To model this equation, we set our initial condition as $z_0=0$, loop over each point $(x,y)$ in an \texttt{np.meshgrid(x,y)}, then check to see if that point is within our range of points that converge. Specifically for the Mandelbrot set, points of convergence are points that lie within the sets radius of convergence,: $R< 2$ corresponding to $|z_i|<2$. We then plot the points using both a binary and colored map to visualize the fractal:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{mandelbrot.png}
+    \caption{Visualization of the Mandelbrot Set}
+    \label{Figure 1:placeholder}
+\end{figure}
+Upon googling the Mandelbrot Set, we clearly see that we have accurately produced a recreation as expected. 
+Note: *Sorry that the color map does not display the boundary points of the fractal super well. 
+\section*{Question 2:}
+Throughout the second question, we have been tasked with recreating and solving Lorenz's famous hydrodynamic ODE model. We once again begin by defining our derivatives recursively, while also including the provided values for coefficients. Utilizing SciPy's \texttt{solve\_ivp} function, we supply initial conditions and simulate the model for 3 seconds with a timestep of $\Delta t = 0.01$ resulting in the following plot:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{recreation.png}
+    \caption{Recreation of Lorenz Figure 1}
+    \label{Figure 2:placeholder}
+\end{figure}
+\noindent Comparing this result to Lorenz's, we clearly see a notable difference, especially in the latter-half of the model. I suspect this is due to computational difference between the machine I ran this on (My personal Laptop), and the computer that Lorenz ran his model on. Given that double precision floating point numbers are significantly more accurate then what was utilized back in 1962, we can infer by the nature of the fact that this is a chaotic system, that our results should look different. (This is later supported when we show tiny changes in initial conditions result in wildly different outcomes.) As rounding errors accumulate, our solutions differ further and further from what Lorenz calculated. 
+
+Similarly, we reproduced Lorenz's second figure from the original paper by once again using \texttt{solve\_ivp} on all three of our time dependent variables and plotting them against one another, commonly referred to as plotting in phase space:
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\linewidth]{recration 2.png}
+    \caption{Recreation of Lorenz Figure 2}
+    \label{Figure 3:placeholder}
+\end{figure}
+
+We compare to Lorenz's plots and notice an overall resemblance but observe, slight but perceptible key differences in the the plots. Specifically, we can highlight the $Y - X$ plot, visualizing that Lorenz's graph has an extra so-called, "loop" throughout the bottom half of the figure. We, once again, attribute this to greater precision in our computational power in the present day compared to 1962. 
+
+Lastly, in order to see the chaotic nature of the system, defined to be a sensitivity to initial conditions, we define a new set of initial conditions, $W'$, in which we shift the initial $Y$ position by $1e^{-8}$. We then once again utilize \texttt{solve\_ivp} to solve the system using our new set of initial conditions. Finding the length of the vector between our new solutions with initial conditions $W'$ and our original solution set with initial conditions $W$ and plotting this for each timestep $\Delta t= 0.01$, we see the following:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{distance.png}
+    \caption{Distance between perturbed solution set and original solution set sver time}
+    \label{Figure 4:placeholder}
+\end{figure}
+Given that we have plotted the distance axis on a log scale, and can clearly see a steady, linear increase just past $t=1.6$ seconds, we infer that this corresponds to exponential growth. This follows as:
+\[\ln d(t) = t \implies d(t) = e^t\] which is exponential in nature. This implies that this model is heavily dependent on initial conditions making it a chaotic system. 
+
+
+\paragraph{Disclaimer:}
+
+I formally apologize for the unnecessary package imports. The header has been copied over from a previous assignment and I am not sure which packages are not utilized. 
+
+\end{document}
